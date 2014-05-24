@@ -1,5 +1,5 @@
 #lang racket/base
-(require redex/reduction-semantics)
+(require redex/reduction-semantics "utils.rkt")
 
 ;; gradually typed λ-calculus
 (define-language L
@@ -32,11 +32,6 @@
   ; evaluation context
   [C hole (C t) (v C) (ref C) (! C) (C := t) (v := C) (c ◃ N)]
   [N hole (C t) (v C) (ref C) (! C) (C := t) (v := C)])
-
-;; exend environment
-(define-metafunction L
-  ++ : E [x any T] -> E
-  [(++ {any ...} [x any_: T]) {any ... [x any_: T]}]) ; add at end for readability
 
 ;; type consistency rules
 (define-relation L
